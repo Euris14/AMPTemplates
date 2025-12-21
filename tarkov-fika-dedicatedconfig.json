@@ -1,49 +1,5 @@
 [
     {
-        "DisplayName": "SPT-AKI Version Selector",
-        "Category": "Fika Headless Client:stadia_controller",
-        "Subcategory": "Installation:settings:0",
-        "Description": "Choose whether to install the latest SPT-AKI version or a specific version",
-        "Keywords": "spt,aki,version,selector",
-        "FieldName": "SPTSelector",
-        "InputType": "enum",
-        "ParamFieldName": "SPTSelector",
-        "IncludeInCommandLine": false,
-        "DefaultValue": "latest",
-        "EnumValues": {
-            "latest": "Latest Version",
-            "specific": "Specific Version"
-        }
-    },
-    {
-        "DisplayName": "SPT-AKI Specific Version",
-        "Category": "Fika Headless Client:stadia_controller",
-        "Subcategory": "Installation:settings:0",
-        "Description": "Specify the SPT-AKI version tag to install (e.g., 3.10.5). Only used when 'Specific Version' is selected.",
-        "Keywords": "spt,aki,version,tag",
-        "FieldName": "SPTAKIVersion",
-        "InputType": "text",
-        "ParamFieldName": "SPTAKIVersion",
-        "IncludeInCommandLine": false,
-        "DefaultValue": "3.10.5",
-        "Placeholder": "3.10.5",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Fika Server Mod Version",
-        "Category": "Fika Headless Client:stadia_controller",
-        "Subcategory": "Installation:settings:0",
-        "Description": "Specify the Fika Server Mod version tag to install (e.g., 2.3.0). Only used when 'Specific Version' is selected.",
-        "Keywords": "fika,server,mod,version,tag",
-        "FieldName": "FikaVersion",
-        "InputType": "text",
-        "ParamFieldName": "FikaVersion",
-        "IncludeInCommandLine": false,
-        "DefaultValue": "2.3.0",
-        "Placeholder": "2.3.0",
-        "EnumValues": {}
-    },
-    {
         "DisplayName": "Headless Executable Name",
         "Category": "Fika Headless Client:stadia_controller",
         "Subcategory": "Installation:settings:0",
@@ -110,6 +66,19 @@
         "DefaultValue": "15",
         "Placeholder": "15",
         "Suffix": "raids",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Node.js Version",
+        "Category": "Updates",
+        "Subcategory": "Server Updates:build:-1",
+        "Description": "Optionally sets a specific [Node.js version](https://nodejs.org/download/release/) to install. Format: v22.12.0. Empty = default version for the SPT-AKI Version (recommended). Update the server after changing this setting",
+        "Keywords": "node,nodejs,version,NodeVersion",
+        "FieldName": "NodeVersion",
+        "InputType": "text",
+        "ParamFieldName": "NodeVersion",
+        "DefaultValue": "",
+        "Placeholder": "v22.12.0",
         "EnumValues": {}
     }
 ]

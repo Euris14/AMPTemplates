@@ -1,0 +1,23 @@
+[
+  {
+    "Protocol": "TCP",
+    "Port": 6969,
+    "Name": "SPT Server Port",
+    "Description": "Port for SPT Server traffic",
+    "Ref": "ServerPort"
+  },
+  {
+    "Protocol": "UDP",
+    "Port": 6970,
+    "Name": "NAT Punch Server Port",
+    "Description": "Port for NAT Punch Server traffic",
+    "Ref": "NATPort"
+  },
+  {
+    "Protocol": "UDP",
+    "Port": 25565,
+    "Name": "Headless Raid Port",
+    "Description": "UDP port used by Project Fika Dedicated during raids",
+    "Ref": "RaidPort"
+  }
+]
