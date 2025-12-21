@@ -96,14 +96,14 @@
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "CreateFile",
         "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
-        "UpdateSourceData": "@echo off\r\nSPT.Server.exe\r\n"
+        "UpdateSourceData": "@echo off\r\n%~dp0SPT.Server.exe\r\n"
     },
     {
         "UpdateStageName": "Create Temporary Startup Script (Linux)",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "CreateFile",
         "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
-        "UpdateSourceData": "#!/bin/bash\n./SPT.Server.exe\n"
+        "UpdateSourceData": "#!/bin/bash\nset -e\ncd \"$(dirname \"$0\")\"\n./SPT.Server.exe\n"
     },
     {
         "UpdateStageName": "Make Temporary Script Executable (Linux)",
@@ -139,7 +139,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"rm -f \\\"{{$FullBaseDir}}{{HeadlessExecutable}}\\\"\"",
+        "UpdateSourceArgs": "-c \"rm -f '{{$FullBaseDir}}{{HeadlessExecutable}}'\"",
         "SkipOnFailure": true
     },
     {
