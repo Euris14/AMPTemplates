@@ -14,7 +14,7 @@
         "UpdateStageName": "Node.js Download",
         "UpdateSourcePlatform": "Linux",
         "UpdateSourceArch": "x86_64",
-        "UpdateSource": "FetchURL",
+        "UpdateSourceArgs": "-c 'if [ ! -f "{{$FullBaseDir}}{{HeadlessExecutable}}" ]; then target="{{$FullBaseDir}}{{HeadlessExecutable}}"; dir="$(dirname "$target")"; tmp="$(mktemp "$dir/.headless.tmp.XXXXXX")" || exit 1; printf "#!/bin/bash\nset -e\ncd \"$(dirname \"$0\")\"\n./SPT.Server.exe\n" > "$tmp" && mv "$tmp" "$target" && chmod +x "$target"; fi'",
         "UpdateSourceData": "https://nodejs.org/download/release/v20.11.1/node-v20.11.1-linux-x64.tar.gz",
         "UpdateSourceTarget": "{{$FullRootDir}}",
         "OverwriteExistingFiles": true,
