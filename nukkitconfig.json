@@ -52,7 +52,7 @@
         "DisplayName": "Level Seed",
         "Category": "Nukkit:stadia_controller",
         "Subcategory": "Server:dns:1",
-        "Description": "Sets the seed to randomise the generation of a new world. Blank = random seed",
+        "Description": "Sets the seed to randomise the generation of a new world. Empty = random seed",
         "Keywords": "level,seed,level-seed",
         "FieldName": "level-seed",
         "InputType": "text",
@@ -509,6 +509,8 @@
         "IncludeInCommandLine": false,
         "DefaultValue": "21",
         "EnumValues": {
+            "25": "25 - LTS",
+            "24": "24",
             "23": "23",
             "22": "22",
             "21": "21 - LTS (default)",

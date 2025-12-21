@@ -1,19 +1,5 @@
 [
     {
-        "DisplayName": "Public IP",
-        "Category": "Impostor:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "",
-        "Keywords": "",
-        "FieldName": "$ExternalIP",
-        "InputType": "text",
-        "IsFlagArgument": false,
-        "Hidden": true,
-        "ParamFieldName": "$.Server.PublicIp",
-        "IncludeInCommandLine": false,
-        "EnumValues": {}
-    },
-    {
         "DisplayName": "Public Port",
         "Category": "Impostor:stadia_controller",
         "Subcategory": "Server:dns:1",
@@ -122,7 +108,7 @@
         "DisplayName": "Dotnet Version",
         "Category": "Impostor:stadia_controller",
         "Subcategory": "Server:dns:1",
-        "Description": "Sets the ASP.NET Core Runtime [8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or [7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) version to install. Blank = latest version for the release stream specified under Dotnet Release Stream. Use an 8.0 version for Impostor v1.9.0+. Update the server after changing this setting",
+        "Description": "Sets the ASP.NET Core Runtime [8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or [7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) version to install. Empty = latest version for the release stream specified under Dotnet Release Stream. Use an 8.0 version for Impostor v1.9.0+. Update the server after changing this setting",
         "Keywords": "dotnet,version",
         "FieldName": "DotnetVersion",
         "InputType": "text",
@@ -258,5 +244,32 @@
             "False": "false",
             "True": "true"
         }
+    },
+    {
+        "DisplayName": "Public IP Selection Mode",
+        "Category": "Impostor:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Sets whether AMP should automatically select the public IP advertised for the server, or whether it should use the IP set under Server Public IP",
+        "Keywords": "public,ip,publicip",
+        "FieldName": "PublicIp",
+        "InputType": "enum",
+        "ParamFieldName": "$.Server.PublicIp",
+        "DefaultValue": "{{$ExternalIP}}",
+        "EnumValues": {
+            "{{$ExternalIP}}": "Automatic (default)",
+            "{{ManualPublicIP}}": "Manual"
+        }
+    },
+    {
+        "DisplayName": "Server Public IP",
+        "Category": "Impostor:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Sets the public IP advertised for the server, if \"Manual\" is selected as the Public IP Selection Mode. Useful if the host network has multiple public IPs, or the server is behind a public proxy",
+        "Keywords": "manual,public,ip,publicip",
+        "FieldName": "ManualPublicIP",
+        "InputType": "text",
+        "ParamFieldName": "ManualPublicIP",
+        "DefaultValue": "",
+        "EnumValues": {}
     }
 ]

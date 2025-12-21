@@ -5,6 +5,7 @@
   "ip": "0.0.0.0",
   "queryPort": 15637,
   "slotCount": 16,
+  "tags": [],
   "voiceChatMode": "Proximity",
   "enableVoiceChat": false,
   "enableTextChat": false,
@@ -14,6 +15,7 @@
     "playerManaFactor": 1,
     "playerStaminaFactor": 1,
     "playerBodyHeatFactor": 1,
+    "playerDivingTimeFactor": 1,
     "enableDurability": true,
     "enableStarvingDebuff": false,
     "foodBuffDurationFactor": 1,
@@ -22,11 +24,12 @@
     "tombstoneMode": "AddBackpackMaterials",
     "enableGliderTurbulences": true,
     "weatherFrequency": "Normal",
+    "fishingDifficulty": "Normal",
     "miningDamageFactor": 1,
     "plantGrowthSpeedFactor": 1,
     "resourceDropStackAmountFactor": 1,
     "factoryProductionSpeedFactor": 1,
-    "perkUpgradeRecyclingFactor": 0.100000,
+    "perkUpgradeRecyclingFactor": 0.500000,
     "perkCostFactor": 1,
     "experienceCombatFactor": 1,
     "experienceMiningFactor": 1,
@@ -43,7 +46,9 @@
     "pacifyAllEnemies": false,
     "tamingStartleRepercussion": "LoseSomeProgress",
     "dayTimeDuration": 1800000000000,
-    "nightTimeDuration": 720000000000
+    "nightTimeDuration": 720000000000,
+    "curseModifier": "Normal"
   },
-  "userGroups": []
+  "userGroups": [],
+  "bannedAccounts": []
 }
