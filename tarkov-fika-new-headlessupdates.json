@@ -33,7 +33,7 @@
             "UpdateSourcePlatform": "Windows",
             "UpdateSource": "Executable",
             "UpdateSourceData": "powershell.exe",
-            "UpdateSourceArgs": "-NoProfile -Command \"$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Set-Location -Path 'tarkov/7-Zip'; if (Test-Path '7z.exe') { exit 0 } else { Invoke-WebRequest -UseBasicParsing -Uri 'https://7-zip.org/a/7z2409-x64.exe' -OutFile '7z-installer.exe' }; if ($?) { Invoke-WebRequest -UseBasicParsing -Uri 'https://www.7-zip.org/a/7zr.exe' -OutFile '7zr.exe' }; if ($?) { & ./7zr.exe x -y -aoa 7z-installer.exe *> $null 2>&1; Remove-Item -Path '7z-installer.exe' -Force -ErrorAction SilentlyContinue | Out-Null }\"",
+            "UpdateSourceArgs": "-NoProfile -Command \"$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Set-Location -Path '{{$FullBaseDir}}7-Zip'; if (Test-Path '7z.exe') { exit 0 } else { Invoke-WebRequest -UseBasicParsing -Uri 'https://7-zip.org/a/7z2409-x64.exe' -OutFile '7z-installer.exe' }; if ($?) { Invoke-WebRequest -UseBasicParsing -Uri 'https://www.7-zip.org/a/7zr.exe' -OutFile '7zr.exe' }; if ($?) { & ./7zr.exe x -y -aoa 7z-installer.exe *> $null 2>&1; Remove-Item -Path '7z-installer.exe' -Force -ErrorAction SilentlyContinue | Out-Null }\"",
             "SkipOnFailure": false
         },
         {
@@ -41,7 +41,14 @@
             "UpdateSourcePlatform": "Linux",
             "UpdateSource": "Executable",
             "UpdateSourceData": "/bin/bash",
-            "UpdateSourceArgs": "-c \"cd tarkov/7-Zip && [[ -x 7zzs ]] && exit 0 || { wget -qO 7z.tar.xz https://www.7-zip.org/a/7z2409-linux-x64.tar.xz && tar -xf 7z.tar.xz >/dev/null 2>&1 && rm -f 7z.tar.xz >/dev/null 2>&1; }\"",
+            "UpdateSourceArgs": "-c \"cd \\\"{{$FullBaseDir}}7-Zip\\\" && [[ -x 7zzs ]] && exit 0 || { wget -qO 7z.tar.xz https://www.7-zip.org/a/7z2409-linux-x64.tar.xz && tar -xf 7z.tar.xz >/dev/null 2>&1 && rm -f 7z.tar.xz >/dev/null 2>&1; }\"",
+            "SkipOnFailure": false
+        },
+        {
+            "UpdateStageName": "Server Directory Creation",
+            "UpdateSourcePlatform": "All",
+            "UpdateSource": "CreateDirectory",
+            "UpdateSourceArgs": "{{$FullBaseDir}}server",
             "SkipOnFailure": false
         },
         {
@@ -49,7 +56,7 @@
             "UpdateSourcePlatform": "Windows",
             "UpdateSource": "Executable",
             "UpdateSourceData": "powershell.exe",
-            "UpdateSourceArgs": "-NoProfile -Command \"Set-Location -Path 'tarkov/server'; if (Test-Path 'SPT.bak') { Remove-Item 'SPT.bak' -Recurse -Force -ErrorAction SilentlyContinue | Out-Null }; if (Test-Path 'SPT') { Copy-Item -Path 'SPT' -Destination 'SPT.bak' -Recurse -Force -ErrorAction SilentlyContinue | Out-Null }\"",
+            "UpdateSourceArgs": "-NoProfile -Command \"Set-Location -Path '{{$FullBaseDir}}server'; if (Test-Path 'SPT.bak') { Remove-Item 'SPT.bak' -Recurse -Force -ErrorAction SilentlyContinue | Out-Null }; if (Test-Path 'SPT') { Copy-Item -Path 'SPT' -Destination 'SPT.bak' -Recurse -Force -ErrorAction SilentlyContinue | Out-Null }\"",
             "SkipOnFailure": false
         },
         {
@@ -57,7 +64,7 @@
             "UpdateSourcePlatform": "Linux",
             "UpdateSource": "Executable",
             "UpdateSourceData": "/bin/bash",
-            "UpdateSourceArgs": "-c \"cd tarkov/server; [[ -d SPT.bak ]] && rm -rf SPT.bak >/dev/null 2>&1; [[ -d SPT ]] && \\cp -rf SPT SPT.bak >/dev/null 2>&1 || exit 0\"",
+            "UpdateSourceArgs": "-c \"cd \\\"{{$FullBaseDir}}server\\\"; [[ -d SPT.bak ]] && rm -rf SPT.bak >/dev/null 2>&1; [[ -d SPT ]] && \\cp -rf SPT SPT.bak >/dev/null 2>&1 || exit 0\"",
             "SkipOnFailure": false
         },
         {
@@ -65,7 +72,7 @@
             "UpdateSourcePlatform": "Windows",
             "UpdateSource": "Executable",
             "UpdateSourceData": "powershell.exe",
-            "UpdateSourceArgs": "-NoProfile -Command \"$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Set-Location -Path 'tarkov/server'; $DownloadURL = [regex]::Match((Invoke-RestMethod -UseBasicParsing -Uri 'https://api.github.com/repos/sp-tarkov/build/releases/latest').body, 'https://\\\\S+?\\\\.7z').Value; Invoke-WebRequest -UseBasicParsing -Uri \\\"$DownloadURL\\\" -OutFile 'SPT.7z'; & ../7-Zip/7z.exe x -y -aoa SPT.7z | Out-Null; Remove-Item -Path 'SPT.7z' -Force -ErrorAction SilentlyContinue | Out-Null\"",
+            "UpdateSourceArgs": "-NoProfile -Command \"$ProgressPreference='SilentlyContinue'; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Set-Location -Path '{{$FullBaseDir}}server'; $DownloadURL = [regex]::Match((Invoke-RestMethod -UseBasicParsing -Uri 'https://api.github.com/repos/sp-tarkov/build/releases/latest').body, 'https://\\\\S+?\\\\.7z').Value; Invoke-WebRequest -UseBasicParsing -Uri \\\"$DownloadURL\\\" -OutFile 'SPT.7z'; & \\\"{{$FullBaseDir}}7-Zip/7z.exe\\\" x -y -aoa SPT.7z | Out-Null; Remove-Item -Path 'SPT.7z' -Force -ErrorAction SilentlyContinue | Out-Null\"",
             "SkipOnFailure": false
         },
         {
@@ -73,7 +80,7 @@
             "UpdateSourcePlatform": "Linux",
             "UpdateSource": "Executable",
             "UpdateSourceData": "/bin/bash",
-            "UpdateSourceArgs": "-c \"cd tarkov/server && DownloadURL=$(wget -qO- https://api.github.com/repos/sp-tarkov/build/releases/latest | jq -r \\\".body\\\" | grep -Eo \\\"https://[^ ]+\\\\.7z\\\") && wget -qO SPT.7z $DownloadURL && ../7-Zip/7zzs x -y -aoa SPT.7z >/dev/null 2>&1 && rm -f SPT.7z >/dev/null 2>&1 && chmod +x SPT/SPT.Server.Linux >/dev/null 2>&1\"",
+            "UpdateSourceArgs": "-c \"cd \\\"{{$FullBaseDir}}server\\\" && DownloadURL=$(wget -qO- https://api.github.com/repos/sp-tarkov/build/releases/latest | jq -r \\\".body\\\" | grep -Eo \\\"https://[^ ]+\\\\.7z\\\") && wget -qO SPT.7z $DownloadURL && \\\"{{$FullBaseDir}}7-Zip/7zzs\\\" x -y -aoa SPT.7z >/dev/null 2>&1 && rm -f SPT.7z >/dev/null 2>&1 && chmod +x SPT/SPT.Server.Linux >/dev/null 2>&1\"",
             "SkipOnFailure": false
         },
         {
