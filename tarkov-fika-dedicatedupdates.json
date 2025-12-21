@@ -92,12 +92,6 @@
         "DeleteAfterExtract": true
     },
     {
-        "UpdateStageName": "Make Executable (Linux)",
-        "UpdateSourcePlatform": "Linux",
-        "UpdateSource": "SetExecutableFlag",
-        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}"
-    },
-    {
         "UpdateStageName": "Server Startup",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "StartApplication"
@@ -111,5 +105,12 @@
         "UpdateStageName": "Server Shutdown",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "ShutdownApplication"
+    },
+    {
+        "UpdateStageName": "Make Executable (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "SetExecutableFlag",
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
+        "SkipOnFailure": true
     }
 ]
