@@ -95,7 +95,8 @@
         "UpdateStageName": "Make Executable (Linux)",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "SetExecutableFlag",
-        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}"
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
+        "SkipOnFailure": true
     },
     {
         "UpdateStageName": "Server Startup",
