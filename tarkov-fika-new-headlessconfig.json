@@ -626,7 +626,7 @@
     },
     {
         "DisplayName": "Enable Project Fika Dedicated",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Headless:settings:0",
         "Description": "If set, Project Fika Dedicated will be installed to ./tarkov/headless and started alongside the server. Use the Headless Start/Stop/Restart actions to control it.",
         "Keywords": "fika,dedicated,headless,enable",
@@ -641,7 +641,7 @@
     },
     {
         "DisplayName": "Headless Executable Name",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Headless:settings:0",
         "Description": "Name of the executable to run inside ./tarkov/headless (e.g., Fika.Dedicated.exe on Windows).",
         "Keywords": "executable,headless,file",
@@ -655,7 +655,7 @@
     },
     {
         "DisplayName": "Headless Server URL",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Connection:dns:1",
         "Description": "Sets the URL of the Fika server to connect to (e.g., http://127.0.0.1:6969)",
         "Keywords": "server,url,connection",
@@ -668,7 +668,7 @@
     },
     {
         "DisplayName": "Headless Profile ID",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Connection:dns:1",
         "Description": "Sets the profile ID to use for this headless client. Must be created on the Fika server first.",
         "Keywords": "profile,id,dedicated",
@@ -681,7 +681,7 @@
     },
     {
         "DisplayName": "Headless Raid Port",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Connection:dns:1",
         "Description": "Sets the UDP port used during raids",
         "Keywords": "raid,port,udp",
@@ -695,7 +695,7 @@
     },
     {
         "DisplayName": "Headless Auto Restart After Raids",
-        "Category": "Fika Dedicated (Headless Client):stadia_controller",
+        "Category": "Fika Dedicated Headless Client:stadia_controller",
         "Subcategory": "Behavior:settings:2",
         "Description": "Sets how many raids the client can run before automatically restarting. 0 = never restart",
         "Keywords": "restart,raids,amount,auto",
