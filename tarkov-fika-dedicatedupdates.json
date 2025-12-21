@@ -108,10 +108,41 @@
         "SkipOnFailure": false
     },
     {
+        "UpdateStageName": "Create Fallback Headless Script (Windows)",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "cmd.exe",
+        "UpdateSourceArgs": "/C if not exist \"{{$FullBaseDir}}{{HeadlessExecutable}}\" ( set \"_tmp={{$FullBaseDir}}{{HeadlessExecutable}}.tmp\" & ( echo @echo off>\"%_tmp%\" & echo %%~dp0SPT.Server.exe>>\"%_tmp%\" ) && move /Y \"%_tmp%\" \"{{$FullBaseDir}}{{HeadlessExecutable}}\" )",
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Create Fallback Headless Script (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"if [ ! -f \"{{$FullBaseDir}}{{HeadlessExecutable}}\" ]; then target=\"{{$FullBaseDir}}{{HeadlessExecutable}}\"; dir=\"$(dirname \"$target\")\"; tmp=\"$(mktemp \"$dir/.headless.tmp.XXXXXX\")\" && printf '#!/bin/bash\nset -e\ncd \"$(dirname \"$0\")\"\n./SPT.Server.exe\n' > \"$tmp\" && mv \"$tmp\" \"$target\"; fi\"",
+        "SkipOnFailure": true
+    },
+    {
         "UpdateStageName": "Make Executable (Linux)",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "SetExecutableFlag",
         "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
         "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Server Startup",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "StartApplication"
+    },
+    {
+        "UpdateStageName": "Wait For Server Startup",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "WaitForStartupComplete"
+    },
+    {
+        "UpdateStageName": "Server Shutdown",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "ShutdownApplication"
     }
 ]
