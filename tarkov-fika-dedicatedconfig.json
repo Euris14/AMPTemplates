@@ -30,6 +30,20 @@
         "EnumValues": {}
     },
     {
+        "DisplayName": "Fika Server Mod Version",
+        "Category": "Fika Headless Client:stadia_controller",
+        "Subcategory": "Installation:settings:0",
+        "Description": "Specify the Fika Server Mod version tag to install (e.g., 2.3.0). Only used when 'Specific Version' is selected.",
+        "Keywords": "fika,server,mod,version,tag",
+        "FieldName": "FikaVersion",
+        "InputType": "text",
+        "ParamFieldName": "FikaVersion",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "2.3.0",
+        "Placeholder": "2.3.0",
+        "EnumValues": {}
+    },
+    {
         "DisplayName": "Headless Executable Name",
         "Category": "Fika Headless Client:stadia_controller",
         "Subcategory": "Installation:settings:0",

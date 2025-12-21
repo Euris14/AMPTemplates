@@ -55,7 +55,7 @@
         "UpdateSourceArch": "x86_64",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"cd tarkov-fika-dedicated && rm -rf srv; git clone https://github.com/sp-tarkov/server.git srv >/dev/null && cd srv/project && git lfs pull >/dev/null && export PATH={{$FullRootDir}}node/bin:$PATH && npm install >/dev/null 2>&1 && npm run build:release -- --arch=x64 --platform=linux >/dev/null 2>&1 && \\cp -rf build/* \\\"{{$FullBaseDir}}\\\" >/dev/null 2>&1 && cd \\\"{{$FullBaseDir}}\\\" && rm -rf \\\"{{$FullRootDir}}srv\\\" >/dev/null 2>&1 && chmod +x SPT.Server.exe >/dev/null 2>&1\"",
+        "UpdateSourceArgs": "-c \"cd tarkov-fika-dedicated && rm -rf srv; git clone https://github.com/sp-tarkov/server.git srv >/dev/null && cd srv/project && git-lfs pull >/dev/null && export PATH={{$FullRootDir}}node/bin:$PATH && npm install >/dev/null 2>&1 && npm run build:release -- --arch=x64 --platform=linux >/dev/null 2>&1 && \\cp -rf build/* \\\"{{$FullBaseDir}}\\\" >/dev/null 2>&1 && cd \\\"{{$FullBaseDir}}\\\" && rm -rf \\\"{{$FullRootDir}}srv\\\" >/dev/null 2>&1 && chmod +x SPT.Server.exe >/dev/null 2>&1\"",
         "UpdateSourceConditionSetting": "SPTSelector",
         "UpdateSourceConditionValue": "latest",
         "SkipOnFailure": false
@@ -76,20 +76,35 @@
         "UpdateSourceArch": "x86_64",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"cd tarkov-fika-dedicated && rm -rf srv; git clone --branch {{SPTAKIVersion}} https://github.com/sp-tarkov/server.git srv >/dev/null && cd srv/project && git lfs pull >/dev/null && export PATH={{$FullRootDir}}node/bin:$PATH && npm install >/dev/null 2>&1 && npm run build:release -- --arch=x64 --platform=linux >/dev/null 2>&1 && \\cp -rf build/* \\\"{{$FullBaseDir}}\\\" >/dev/null 2>&1 && cd \\\"{{$FullBaseDir}}\\\" && rm -rf \\\"{{$FullRootDir}}srv\\\" >/dev/null 2>&1 && [[ -f Aki.Server.exe ]] && mv -f Aki.Server.exe SPT.Server.exe >/dev/null 2>&1; chmod +x SPT.Server.exe >/dev/null 2>&1\"",
+        "UpdateSourceArgs": "-c \"cd tarkov-fika-dedicated && rm -rf srv; git clone --branch {{SPTAKIVersion}} https://github.com/sp-tarkov/server.git srv >/dev/null && cd srv/project && git-lfs pull >/dev/null && export PATH={{$FullRootDir}}node/bin:$PATH && npm install >/dev/null 2>&1 && npm run build:release -- --arch=x64 --platform=linux >/dev/null 2>&1 && \\cp -rf build/* \\\"{{$FullBaseDir}}\\\" >/dev/null 2>&1 && cd \\\"{{$FullBaseDir}}\\\" && rm -rf \\\"{{$FullRootDir}}srv\\\" >/dev/null 2>&1 && [[ -f Aki.Server.exe ]] && mv -f Aki.Server.exe SPT.Server.exe >/dev/null 2>&1; chmod +x SPT.Server.exe >/dev/null 2>&1\"",
         "UpdateSourceConditionSetting": "SPTSelector",
         "UpdateSourceConditionValue": "specific",
         "SkipOnFailure": false
     },
     {
-        "UpdateStageName": "Fika Server Mod Download",
+        "UpdateStageName": "Fika Server Mod Download (Latest)",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "GithubRelease",
         "UpdateSourceArgs": "project-fika/Fika-Server",
         "UpdateSourceTarget": "{{$FullBaseDir}}",
         "UnzipUpdateSource": true,
         "OverwriteExistingFiles": true,
-        "DeleteAfterExtract": true
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "SPTSelector",
+        "UpdateSourceConditionValue": "latest"
+    },
+    {
+        "UpdateStageName": "Fika Server Mod Download (Specific Version)",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "FetchURLFromJQ",
+        "UpdateSourceData": "https://api.github.com/repos/project-fika/Fika-Server/releases/tags/v{{FikaVersion}}",
+        "UpdateSourceArgs": "$.assets[0].browser_download_url",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "UpdateSourceConditionSetting": "SPTSelector",
+        "UpdateSourceConditionValue": "specific"
     },
     {
         "UpdateStageName": "Verify Installation (Windows)",
@@ -120,7 +135,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"if [ ! -f \\\"{{$FullBaseDir}}{{HeadlessExecutable}}\\\" ]; then target=\\\"{{$FullBaseDir}}{{HeadlessExecutable}}\\\"; tmp=$(mktemp) || exit 1; printf '#!/bin/bash\\nset -e\\n./SPT.Server.exe\\n' > \\\"$tmp\\\" && mv \\\"$tmp\\\" \\\"$target\\\" && chmod +x \\\"$target\\\"; fi\"",
+        "UpdateSourceArgs": "-c \"target=\\\"{{$FullBaseDir}}{{HeadlessExecutable}}\\\"; if [ ! -f \\\"$target\\\" ]; then printf '#!/bin/bash\\nset -e\\n./SPT.Server.exe\\n' > \\\"$target\\\" && chmod +x \\\"$target\\\"; fi\"",
         "SkipOnFailure": true
     },
     {
@@ -129,20 +144,5 @@
         "UpdateSource": "SetExecutableFlag",
         "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
         "SkipOnFailure": true
-    },
-    {
-        "UpdateStageName": "Server Startup",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "StartApplication"
-    },
-    {
-        "UpdateStageName": "Wait For Server Startup",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "WaitForStartupComplete"
-    },
-    {
-        "UpdateStageName": "Server Shutdown",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "ShutdownApplication"
     }
 ]
