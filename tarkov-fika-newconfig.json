@@ -623,5 +623,20 @@
         "DefaultValue": "",
         "Placeholder": "9.0.9",
         "EnumValues": {}
+    },
+    {
+        "DisplayName": "SPT Download URL Override",
+        "Category": "Updates",
+        "Subcategory": "Server Updates:build:-1",
+        "Description": "Optional. If set, this URL will be used to download the SPT server archive instead of discovering it from the sp-tarkov/build GitHub release. Useful if upstream packaging changes.",
+        "Keywords": "spt,download,url,override,archive",
+        "FieldName": "SPTDownloadURL",
+        "InputType": "text",
+        "IsFlagArgument": false,
+        "ParamFieldName": "SPTDownloadURL",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "",
+        "Placeholder": "https://github.com/sp-tarkov/build/releases/download/.../SPT-....zip",
+        "EnumValues": {}
     }
 ]
