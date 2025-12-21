@@ -92,6 +92,26 @@
         "DeleteAfterExtract": true
     },
     {
+        "UpdateStageName": "Create Temporary Startup Script (Windows)",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "CreateFile",
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
+        "UpdateSourceData": "@echo off\r\nSPT.Server.exe\r\n"
+    },
+    {
+        "UpdateStageName": "Create Temporary Startup Script (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "CreateFile",
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
+        "UpdateSourceData": "#!/bin/bash\n./SPT.Server.exe\n"
+    },
+    {
+        "UpdateStageName": "Make Temporary Script Executable (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "SetExecutableFlag",
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}"
+    },
+    {
         "UpdateStageName": "Server Startup",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "StartApplication"
@@ -105,6 +125,22 @@
         "UpdateStageName": "Server Shutdown",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "ShutdownApplication"
+    },
+    {
+        "UpdateStageName": "Remove Temporary Startup Script (Windows)",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "cmd.exe",
+        "UpdateSourceArgs": "/C del /Q \"{{$FullBaseDir}}{{HeadlessExecutable}}\"",
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Remove Temporary Startup Script (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"rm -f \\\"{{$FullBaseDir}}{{HeadlessExecutable}}\\\"\"",
+        "SkipOnFailure": true
     },
     {
         "UpdateStageName": "Make Executable (Linux)",
