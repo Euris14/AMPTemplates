@@ -92,10 +92,26 @@
         "DeleteAfterExtract": true
     },
     {
+        "UpdateStageName": "Verify Installation (Windows)",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "cmd.exe",
+        "UpdateSourceArgs": "/C if not exist \"{{$FullBaseDir}}SPT.Server.exe\" ( echo SPT.Server.exe missing & exit /B 1 ) else ( echo Installation verified )",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Verify Installation (Linux)",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"cd \\\"{{$FullBaseDir}}\\\" && [[ -f SPT.Server.exe ]] || { echo 'SPT.Server.exe missing'; exit 1; }\"",
+        "SkipOnFailure": false
+    },
+    {
         "UpdateStageName": "Make Executable (Linux)",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "SetExecutableFlag",
-        "UpdateSourceArgs": "{{$FullBaseDir}}SPT.Server.exe",
+        "UpdateSourceArgs": "{{$FullBaseDir}}{{HeadlessExecutable}}",
         "SkipOnFailure": true
     }
 ]
