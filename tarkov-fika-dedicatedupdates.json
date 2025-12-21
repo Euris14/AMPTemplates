@@ -120,7 +120,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"if [ ! -f \"{{$FullBaseDir}}{{HeadlessExecutable}}\" ]; then target=\"{{$FullBaseDir}}{{HeadlessExecutable}}\"; dir=\"$(dirname \"$target\")\"; tmp=$(mktemp \"$dir/.headless.tmp.XXXXXX\") || exit 1; printf '#!/bin/bash\\nset -e\\ncd \"$(dirname \"$0\")\"\\n./SPT.Server.exe\\n' > \"$tmp\" && mv \"$tmp\" \"$target\"; fi\"",
+        "UpdateSourceArgs": "-c \"if [ ! -f \"{{$FullBaseDir}}{{HeadlessExecutable}}\" ]; then target=\"{{$FullBaseDir}}{{HeadlessExecutable}}\"; dir=\"$(dirname \"$target\")\"; tmp=$(mktemp \"$dir/.headless.tmp.XXXXXX\") || exit 1; printf '#!/bin/bash\\nset -e\\ncd \"$(dirname \"$0\")\"\\n./SPT.Server.exe\\n' > \"$tmp\" && mv \"$tmp\" \"$target\" && chmod +x \"$target\"; fi\"",
         "SkipOnFailure": true
     },
     {
