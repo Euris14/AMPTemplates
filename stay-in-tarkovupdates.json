@@ -95,20 +95,5 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "SetExecutableFlag",
         "UpdateSourceArgs": "{{$FullBaseDir}}Aki.Server.exe"
-    },
-    {
-        "UpdateStageName": "Server Startup",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "StartApplication"
-    },
-    {
-        "UpdateStageName": "Wait For Server Startup",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "WaitForStartupComplete"
-    },
-    {
-        "UpdateStageName": "Server Shutdown",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "ShutdownApplication"
     }
 ]
