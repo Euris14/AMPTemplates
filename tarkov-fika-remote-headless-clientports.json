@@ -1,0 +1,9 @@
+[
+  {
+    "DisplayName": "Headless Network Port",
+    "Description": "UDP port used by the Fika headless client for raid P2P (docs: Network.Port, default 25565).",
+    "Protocol": "UDP",
+    "Port": 25565,
+    "Ref": "HeadlessNetworkPort"
+  }
+]

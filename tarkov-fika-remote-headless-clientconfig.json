@@ -1,0 +1,106 @@
+[
+  {
+    "DisplayName": "Headless Install Path",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "Absolute path to the prepared Fika Headless Client install directory (must contain FikaHeadlessManager.exe and HeadlessConfig.json).",
+    "Keywords": "headless,install,path",
+    "FieldName": "HeadlessInstallPath",
+    "InputType": "text",
+    "Required": true,
+    "DefaultValue": "",
+    "Placeholder": "C:\\FikaHeadless",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "SPT Path",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "Absolute path to a prepared SPT install. This template validates required SPT files but never starts SPT.Server.",
+    "Keywords": "spt,path,aki",
+    "FieldName": "SPTPath",
+    "InputType": "text",
+    "Required": true,
+    "DefaultValue": "",
+    "Placeholder": "C:\\SPT",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Server Address",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "IP or hostname of the existing Fika server.",
+    "Keywords": "server,address,host,ip",
+    "FieldName": "ServerAddress",
+    "InputType": "text",
+    "Required": true,
+    "DefaultValue": "",
+    "Placeholder": "192.168.1.10",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Server Port",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "TCP port of the Fika server API endpoint used for BackendUrl (example in docs: https://SERVER_IP:6969).",
+    "Keywords": "server,port,backend,url",
+    "FieldName": "ServerPort",
+    "InputType": "number",
+    "Required": true,
+    "DefaultValue": "6969",
+    "MinValue": "1",
+    "MaxValue": "65535",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Headless Profile Name",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "Label used by AMP for log naming and status messages. (The Remote Headless Client docs excerpt provided does not specify a profile-name config key.)",
+    "Keywords": "profile,name,headless",
+    "FieldName": "HeadlessProfileName",
+    "InputType": "text",
+    "Required": true,
+    "DefaultValue": "headless_1",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Auto Reconnect",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "If enabled, AMP wrapper will restart the headless manager if it exits unexpectedly.",
+    "Keywords": "auto,reconnect,restart",
+    "FieldName": "AutoReconnect",
+    "InputType": "checkbox",
+    "Required": true,
+    "DefaultValue": "true",
+    "EnumValues": {
+      "False": "false",
+      "True": "true"
+    }
+  },
+  {
+    "DisplayName": "Log Level",
+    "Category": "Fika",
+    "Subcategory": "Remote Headless Client",
+    "Description": "Controls wrapper verbosity (does not change FikaHeadlessManager internal logging unless documented by Fika).",
+    "Keywords": "log,level,debug",
+    "FieldName": "LogLevel",
+    "InputType": "text",
+    "Required": true,
+    "DefaultValue": "Info",
+    "EnumValues": {}
+  },
+  {
+    "DisplayName": "Windows Startup Command",
+    "Category": "System",
+    "Subcategory": "Startup",
+    "Description": "Internal. Command invoked by AMP to start the headless client.",
+    "Keywords": "startup,command",
+    "FieldName": "WindowsStartupCommand",
+    "InputType": "text",
+    "Hidden": true,
+    "DefaultValue": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\fika-rhc-start.ps1 -HeadlessInstallPath \"{{HeadlessInstallPath}}\" -SPTPath \"{{SPTPath}}\" -ServerAddress \"{{ServerAddress}}\" -ServerPort {{ServerPort}} -HeadlessProfileName \"{{HeadlessProfileName}}\" -AutoReconnect {{AutoReconnect}} -LogLevel \"{{LogLevel}}\"",
+    "EnumValues": {}
+  }
+]
